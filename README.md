@@ -4,7 +4,7 @@ workflow to extract UMI from fastq files and place in fastq header
 ### Purpose : 
 workflow to extract UMI from fastq files and place in fastq header
 
-### mutect2 :
+### Original :
 https://github.com/CGATOxford/UMI-tools
 
 #### Requirements/expectations
