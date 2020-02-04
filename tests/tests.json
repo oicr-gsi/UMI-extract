@@ -3,7 +3,7 @@
       "description": "UMItools workflow test",
       "metrics_calculate": "calculate.sh",
       "metrics_compare": "compare.sh",
-      "output_metrics_dir": "/.mounts/labs/gsiprojects/gsi/workflow-dev/UMI-tools-output/",
+      "output_metrics_dir": "/.mounts/labs/gsi/testdata/umiTools/1.0.0/output_metrics",
       "parameters": {
         "wdl_options": {
           "write_to_cache": false,

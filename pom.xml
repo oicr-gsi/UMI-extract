@@ -10,12 +10,12 @@
         <relativePath/>
     </parent>
 
-    <artifactId>UMI-extract</artifactId>
+    <artifactId>umiExtract</artifactId>
     <version>1.0</version>
 
     <properties>
         <workflow-description>Workflow to extract UMIs from reads and put them as identifiers</workflow-description>
-        <wdl-workflow>UMItools.wdl</wdl-workflow>
+        <wdl-workflow>umiExtract.wdl</wdl-workflow>
         <test-basedir>tests/</test-basedir>
     </properties>
 
