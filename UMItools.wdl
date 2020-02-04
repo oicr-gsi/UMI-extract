@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version 1.0
 
 workflow umiTools {
@@ -96,3 +97,6 @@ meta {
     }
 }
 }
+=======
+
+>>>>>>> 65dfb386cf101775f0bfbaf4ccd9d2257b9c1c54
