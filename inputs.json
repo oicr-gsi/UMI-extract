@@ -1,0 +1,8 @@
+{                                                                                                                                                                                                                                            
+                    "umiTools.outFileNamePrefix2": "OUTPUT_SWID_15587750_MATS_0015_Ly_P_PE_061101_TS_MATS05_160640_MLP_191217_A00469_0073_BHWWL3DSXX_CTGATCGT-ATATGCGC_L001_R2_001",
+                    "umiTools.outFileNamePrefix1": "OUTPUT_SWID_15587750_MATS_0015_Ly_P_PE_061101_TS_MATS05_160640_MLP_191217_A00469_0073_BHWWL3DSXX_CTGATCGT-ATATGCGC_L001_R1_001",
+                    "umiTools.regex": "'(?P<umi_1>.{3}[ACGN])(?P<discard_1>T)|(?P<umi_1>.{3})(?P<discard_1>T.)'",
+                    "umiTools.logNamePrefix": "log",
+                    "umiTools.fastq1": "/.mounts/labs/gsiprojects/gsi/workflow-dev/UMI-tools/datatests/MATS/raw_fastq/SWID_15587750_MATS_0015_Ly_P_PE_061101_TS_MATS05_160640_MLP_191217_A00469_0073_BHWWL3DSXX_CTGATCGT-ATATGCGC_L001_R1_001.fastq.gz",
+                    "umiTools.fastq2": "/.mounts/labs/gsiprojects/gsi/workflow-dev/UMI-tools/datatests/MATS/raw_fastq/SWID_15587750_MATS_0015_Ly_P_PE_061101_TS_MATS05_160640_MLP_191217_A00469_0073_BHWWL3DSXX_CTGATCGT-ATATGCGC_L001_R2_001.fastq.gz"
+                }
