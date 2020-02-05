@@ -4,13 +4,12 @@ workflow umiExtract {
 input {
  File fastq1
  File fastq2
- String outFileNamePrefix1
- String outFileNamePrefix2
- String logNamePrefix
  String regex 
 
 }
-call extractUMI {input: fastq1 = fastq1, fastq2 = fastq2, outFileNamePrefix1 = outFileNamePrefix1, outFileNamePrefix2 = outFileNamePrefix2, logNamePrefix = logNamePrefix, regex = regex}
+call extractUMI {input: fastq1 = fastq1, 
+                        fastq2 = fastq2, 
+			regex = regex}
 
 meta {
  author: "Rishi Shah"
@@ -20,13 +19,13 @@ meta {
       {
         name: "umi-tools/1.0.0",
         url: "https://github.com/CGATOxford/UMI-tools"
-      },
-
-      {
-        name: "python/3.6",
-        url: "https://www.python.org/downloads/release/python-360/" 
       }
-    ]
+ ]
+ output_meta: {
+   fastq1Out: "Outputted fastq file with extracted UMIs from input file 1",
+   fastq2Out: "Outputted fastq file with extracted UMIs from input file 2"
+  }
+
 }
 
 
@@ -35,36 +34,29 @@ output {
   File fastq2Out = extractUMI.outputFastq2
  }
 
-meta {
-    output_meta: {
-      fastq1Out: "Outputted fastq file with extracted UMIs from input file 1",
-      fastq2Out: "Outputted fastq file with extracted UMIs from input file 2"
-    }
-}
-
 }
 
 task extractUMI {
 input {
     File fastq1
     File fastq2
-    String outFileNamePrefix1
-    String outFileNamePrefix2
-    String logNamePrefix
+    String outFileName1 = basename("~{fastq1}", ".fastq.gz")
+    String outFileName2 = basename("~{fastq2}", ".fastq.gz")
+    String logNamePrefix = "log"
     String regex 
     String method = "regex"
-    String modules = "umi-tools/1.0.0 python/3.6"
+    String modules = "umi-tools/1.0.0"
     Int jobMemory = 8
     Int threads = 4
-    Int timeout = 4
+    Int timeout = 6
 
 }
 
 parameter_meta {
     fastq1: "First fastq input file containing reads"
-    fastq2: "Second fast q input file containing reads"
-    outFileNamePrefix1: "Name for the output file derived from input file fastq1"
-    outFileNamePrefix2: "Name for the output file derived from the input file fastq2"
+    fastq2: "Second fastq input file containing reads"
+    outFileName1: "Name for the output file derived from input file fastq1"
+    outFileName2: "Name for the output file derived from the input file fastq2"
     logNamePrefix: "Name for the output log file"
     regex: "Regular experession telling the extract function what to do"
     method: "Using a regular expression as the extract method parameter"
@@ -78,9 +70,9 @@ command <<<
     umi_tools extract --extract-method=~{method} \
                     --bc-pattern=~{regex} \
                     --stdin=~{fastq1} \
-                    --stdout=~{outFileNamePrefix1}.fastq \
+                    --stdout=~{outFileName1}.umi.fastq \
                     --read2-in=~{fastq2} \
-                    --read2-out=~{outFileNamePrefix2}.fastq \
+                    --read2-out=~{outFileName2}.umi.fastq \
                     --log=~{logNamePrefix}.log
 >>>
 
@@ -92,8 +84,8 @@ runtime {
 }
 
 output {
-    File outputFastq1 = "~{outFileNamePrefix1}.fastq"
-    File outputFastq2 = "~{outFileNamePrefix2}.fastq"
+    File outputFastq1 = "~{outFileName1}.fastq"
+    File outputFastq2 = "~{outFileName1}.fastq"
 }
 
 meta {
@@ -103,3 +95,4 @@ meta {
     }
 }
 }
+
