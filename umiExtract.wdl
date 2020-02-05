@@ -84,8 +84,8 @@ runtime {
 }
 
 output {
-    File outputFastq1 = "~{outFileName1}.fastq"
-    File outputFastq2 = "~{outFileName1}.fastq"
+    File outputFastq1 = "~{outFileName1}.umi.fastq"
+    File outputFastq2 = "~{outFileName2}.umi.fastq"
 }
 
 meta {
