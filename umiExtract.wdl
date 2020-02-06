@@ -24,6 +24,7 @@ meta {
  output_meta: {
    fastq1Out: "Outputted fastq file with extracted UMIs from input file 1",
    fastq2Out: "Outputted fastq file with extracted UMIs from input file 2"
+   logOut: "Log with statistics from umi extraction"
   }
 
 }
@@ -32,6 +33,7 @@ meta {
 output {
   File fastq1Out = extractUMI.outputFastq1
   File fastq2Out = extractUMI.outputFastq2
+  File logOut = extractUMI.outputLog
  }
 
 }
@@ -42,7 +44,7 @@ input {
     File fastq2
     String outFileName1 = basename("~{fastq1}", ".fastq.gz")
     String outFileName2 = basename("~{fastq2}", ".fastq.gz")
-    String logNamePrefix = "log"
+    String logNamePrefix = basename("~{fastq1}", ".fastq.gz")
     String regex 
     String method = "regex"
     String modules = "umi-tools/1.0.0"
@@ -86,12 +88,14 @@ runtime {
 output {
     File outputFastq1 = "~{outFileName1}.umi.fastq"
     File outputFastq2 = "~{outFileName2}.umi.fastq"
+    File outputLog = "~{logNamePrefix}.log"
 }
 
 meta {
     output_meta: {
       outputFastq1: "Output fastq file with extracted UMIs from input file 1",
-      outputFastq2: "Output fastq file with extracted UMIs from input file 2"
+      outputFastq2: "Output fastq file with extracted UMIs from input file 2",
+      outputLog: "Log file output"
     }
 }
 }
