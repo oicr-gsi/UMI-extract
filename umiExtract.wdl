@@ -23,7 +23,7 @@ meta {
  ]
  output_meta: {
    fastq1Out: "Outputted fastq file with extracted UMIs from input file 1",
-   fastq2Out: "Outputted fastq file with extracted UMIs from input file 2"
+   fastq2Out: "Outputted fastq file with extracted UMIs from input file 2",
    logOut: "Log with statistics from umi extraction"
   }
 
