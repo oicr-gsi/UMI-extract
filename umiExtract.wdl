@@ -95,7 +95,7 @@ meta {
     output_meta: {
       outputFastq1: "Output fastq file with extracted UMIs from input file 1",
       outputFastq2: "Output fastq file with extracted UMIs from input file 2",
-      outputLog: "Log file outputs
+      outputLog: "Log file outputs"
     }
 }
 }
