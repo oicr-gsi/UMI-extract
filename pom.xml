@@ -16,7 +16,7 @@
     <properties>
         <workflow-description>Workflow to extract UMIs from reads and put them as identifiers</workflow-description>
         <wdl-workflow>umiExtract.wdl</wdl-workflow>
-        <test-basedir>tests/</test-basedir>
+        <test-definition>tests.json</test-definition>
     </properties>
 
 </project>
