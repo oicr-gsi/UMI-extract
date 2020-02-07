@@ -7,4 +7,5 @@ set -o pipefail
 cd $1
 
 #find all files, return their md5sums to std out
+find . \( -type f -size +0 -iname "*.log" \) -printf "log file exists %f\n";
 find . -name "*.fastq" -exec md5sum {} +
