@@ -23,22 +23,27 @@ Parameter|Value|Description
 ---|---|---
 `fastq1`|File|First fastq file
 `fastq2`|File|Second fastq file
-`regex`|String|Regular expression (must be in '')
+`regexKeyword`|String|keyword to get the corresponding regular expression
 
 
 #### Optional workflow parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
+`regexFile`|File|"/.mounts/labs/gsi/testdata/umiExtract/regex/regex.txt"|The file to parse inside which the regex are
+`outputLogNamePrefix`|String|basename("~{fastq1}","_R1_001.fastq.gz")|The name to make the output log
 
 
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
+`getRegexExpression.jobMemory`|Int|8|Memory allocated for this job
+`getRegexExpression.threads`|Int|4|Requested CPU threads
+`getRegexExpression.timeout`|Int|6|hours before task timeout
 `extractUMI.outFileName1`|String|basename("~{fastq1}",".fastq.gz")|Name for the output file derived from input file fastq1
 `extractUMI.outFileName2`|String|basename("~{fastq2}",".fastq.gz")|Name for the output file derived from the input file fastq2
-`extractUMI.logNamePrefix`|String|"log"|Name for the output log file
 `extractUMI.method`|String|"regex"|Using a regular expression as the extract method parameter
-`extractUMI.modules`|String|"umi-tools/1.0.0"|Module needed to run UMI-tools extract
+`extractUMI.savePath`|String|"./output"|Path to save the guppy output
+`extractUMI.modules`|String|"umi-tools/1.0.0 htslib/1.9"|Module needed to run UMI-tools extract
 `extractUMI.jobMemory`|Int|8|Memory allocated for this job
 `extractUMI.threads`|Int|4|Requested CPU threads
 `extractUMI.timeout`|Int|6|hours before task timeout
@@ -50,6 +55,7 @@ Output | Type | Description
 ---|---|---
 `fastq1Out`|File|Outputted fastq file with extracted UMIs from input file 1
 `fastq2Out`|File|Outputted fastq file with extracted UMIs from input file 2
+`logOut`|File|Log with statistics from umi extraction
 
 
 ## Niassa + Cromwell
@@ -76,8 +82,3 @@ mvn clean verify \
 -Dcromwell-host=http://cromwell-url:8000
 ```
 
-## Support
-
-For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
-
-_Generated with wdl_doc_gen (https://github.com/oicr-gsi/wdl_doc_gen/)_
