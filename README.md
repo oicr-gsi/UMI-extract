@@ -42,7 +42,6 @@ Parameter|Value|Default|Description
 `extractUMI.outFileName1`|String|basename("~{fastq1}",".fastq.gz")|Name for the output file derived from input file fastq1
 `extractUMI.outFileName2`|String|basename("~{fastq2}",".fastq.gz")|Name for the output file derived from the input file fastq2
 `extractUMI.method`|String|"regex"|Using a regular expression as the extract method parameter
-`extractUMI.savePath`|String|"./output"|Path to save the guppy output
 `extractUMI.modules`|String|"umi-tools/1.0.0 htslib/1.9"|Module needed to run UMI-tools extract
 `extractUMI.jobMemory`|Int|8|Memory allocated for this job
 `extractUMI.threads`|Int|4|Requested CPU threads
