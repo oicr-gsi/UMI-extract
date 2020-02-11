@@ -17,8 +17,8 @@
   "parameters": {
     "wdl_inputs": {
         "umiExtract.fastq2": "/.mounts/labs/gsiprojects/gsi/workflow-dev/datatests/MATS/raw_fastq/SWID_15587750_MATS_0015_Ly_P_PE_061101_TS_MATS05_160640_MLP_191217_A00469_0073_BHWWL3DSXX_CTGATCGT-ATATGCGC_L001_R2_001.fastq.gz",
-        "umiExtract.regex": "'(?P<umi_1>.{3}[ACGN])(?P<discard_1>T)|(?P<umi_1>.{3})(?P<discard_1>T.)'",
-        "umiExtract.fastq1": "/.mounts/labs/gsiprojects/gsi/workflow-dev/datatests/MATS/raw_fastq/SWID_15587750_MATS_0015_Ly_P_PE_061101_TS_MATS05_160640_MLP_191217_A00469_0073_BHWWL3DSXX_CTGATCGT-ATATGCGC_L001_R1_001.fastq.gz"
+        "umiExtract.fastq1": "/.mounts/labs/gsiprojects/gsi/workflow-dev/datatests/MATS/raw_fastq/SWID_15587750_MATS_0015_Ly_P_PE_061101_TS_MATS05_160640_MLP_191217_A00469_0073_BHWWL3DSXX_CTGATCGT-ATATGCGC_L001_R1_001.fastq.gz",
+	"umiExtract.regexKeyword":"xGenDuplexComplex"
     }
   }
 },
@@ -27,8 +27,8 @@
     "parameters": {
       "wdl_inputs": {
           "umiExtract.fastq2": "/.mounts/labs/gsiprojects/gsi/workflow-dev/datatests/MATS/raw_fastq/SWID_15587752_MATS_0015_Ly_P_PE_061102_TS_MATS05_160640_CMP_191217_A00469_0073_BHWWL3DSXX_ACTCTCGA-TGGTACAG_L001_R2_001.fastq.gz",
-          "umiExtract.regex": "'(?P<umi_1>.{3}[ACGN])(?P<discard_1>T)|(?P<umi_1>.{3})(?P<discard_1>T.)'",
-          "umiExtract.fastq1": "/.mounts/labs/gsiprojects/gsi/workflow-dev/datatests/MATS/raw_fastq/SWID_15587752_MATS_0015_Ly_P_PE_061102_TS_MATS05_160640_CMP_191217_A00469_0073_BHWWL3DSXX_ACTCTCGA-TGGTACAG_L001_R1_001.fastq.gz"
+          "umiExtract.fastq1": "/.mounts/labs/gsiprojects/gsi/workflow-dev/datatests/MATS/raw_fastq/SWID_15587752_MATS_0015_Ly_P_PE_061102_TS_MATS05_160640_CMP_191217_A00469_0073_BHWWL3DSXX_ACTCTCGA-TGGTACAG_L001_R1_001.fastq.gz",
+	  "umiExtract.regexKeyword":"xGenDuplexComplex"
       }
   }
 },
@@ -37,8 +37,8 @@
     "parameters": {
       "wdl_inputs": {
           "umiExtract.fastq2": "/.mounts/labs/gsiprojects/gsi/workflow-dev/datatests/MATS/raw_fastq/SWID_15587752_MATS_0015_Ly_P_PE_061102_TS_MATS05_160640_CMP_191217_A00469_0073_BHWWL3DSXX_ACTCTCGA-TGGTACAG_L001_R2_001.fastq.gz",
-          "umiExtract.regex": "'(?P<umi_1>.{3})(?P<discard_1>.{2})'",
-          "umiExtract.fastq1": "/.mounts/labs/gsiprojects/gsi/workflow-dev/datatests/MATS/raw_fastq/SWID_15587752_MATS_0015_Ly_P_PE_061102_TS_MATS05_160640_CMP_191217_A00469_0073_BHWWL3DSXX_ACTCTCGA-TGGTACAG_L001_R1_001.fastq.gz"
+          "umiExtract.fastq1": "/.mounts/labs/gsiprojects/gsi/workflow-dev/datatests/MATS/raw_fastq/SWID_15587752_MATS_0015_Ly_P_PE_061102_TS_MATS05_160640_CMP_191217_A00469_0073_BHWWL3DSXX_ACTCTCGA-TGGTACAG_L001_R1_001.fastq.gz",
+	  "umiExtract.regexKeyword":"xGenDuplexSimple"
       }
     }
 }

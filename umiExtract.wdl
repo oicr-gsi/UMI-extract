@@ -5,7 +5,7 @@ workflow umiExtract {
     File fastq2
     String regexKeyword
     File regexFile = "/.mounts/labs/gsi/testdata/umiExtract/regex/regex.txt"
-    String outputLogNamePrefix = basename("~{fastq1}", "R1_001.fastq.gz")
+    String outputLogNamePrefix = basename("~{fastq1}", "_R1_001.fastq.gz")
   } 
     
   call getRegexExpression {
@@ -68,7 +68,8 @@ task getRegexExpression {
   }
 
   command <<<
-    grep '${regexKeyword}' ${regexFile}
+    grep '~{regexKeyword}' ~{regexFile}
+    
   >>>
 
   runtime {
@@ -78,7 +79,8 @@ task getRegexExpression {
   }
 
   output {
-    String regexExpression = basename(stdout())
+    String expression = read_string(stdout())
+    String regexExpression = basename(expression)
   }
 
   meta {
@@ -125,13 +127,13 @@ task extractUMI {
 
   command <<<
     umi_tools extract --extract-method=~{method} \
-                      --bc-pattern=~{regexExpression} \
+                      --bc-pattern='~{regexExpression}' \
                       --stdin=~{fastq1} \
                       --stdout=~{outFileName1}.umi.fastq \
                       --read2-in=~{fastq2} \
                       --read2-out=~{outFileName2}.umi.fastq \
-                      --log=~{outputLogNamePrefix}.log
-    bgzip ~{outFileName1}.umi.fastq
+                      --log=~{outputLogNamePrefix}.log;
+    bgzip ~{outFileName1}.umi.fastq;
     bgzip ~{outFileName2}.umi.fastq
   >>>
 
@@ -143,8 +145,8 @@ task extractUMI {
   }
 
   output {
-    File outputFastq1 = "~{outFileName1}.umi.fastq"
-    File outputFastq2 = "~{outFileName2}.umi.fastq"
+    File outputFastq1 = "~{outFileName1}.umi.fastq.gz"
+    File outputFastq2 = "~{outFileName2}.umi.fastq.gz"
     File outputLog = "~{outputLogNamePrefix}.log"
   }
 
