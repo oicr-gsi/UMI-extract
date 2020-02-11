@@ -15,7 +15,6 @@ workflow umiExtract {
       fastq1 = fastq1, 
       fastq2 = fastq2, 
       regexExpression = mapping[regexKeyword],
-      regexFile = regexFile,
       outputLogNamePrefix = outputLogNamePrefix
   }
 
