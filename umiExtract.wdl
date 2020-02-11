@@ -103,7 +103,6 @@ task extractUMI {
     String regexFile
     String regexExpression
     String method = "regex"
-    String savePath = "./output"
     String modules = "umi-tools/1.0.0 htslib/1.9"
     Int jobMemory = 8
     Int threads = 4
@@ -118,7 +117,6 @@ task extractUMI {
     outputLogNamePrefix: "Name for the output log file"
     regexExpression: "Regular experession telling the extract function what to do"
     method: "Using a regular expression as the extract method parameter"
-    savePath: "Path to save the guppy output"
     modules: "Module needed to run UMI-tools extract"
     jobMemory: "Memory allocated for this job"
     threads: "Requested CPU threads"
