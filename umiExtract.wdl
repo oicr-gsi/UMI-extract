@@ -4,21 +4,17 @@ workflow umiExtract {
     File fastq1
     File fastq2
     String regexKeyword
-    File regexFile = "/.mounts/labs/gsi/testdata/umiExtract/regex/regex.txt"
+    File regexFile
     String outputLogNamePrefix = basename("~{fastq1}", "_R1_001.fastq.gz")
   } 
     
-  call getRegexExpression {
-    input: regexKeyword = regexKeyword,
-           regexFile = regexFile
-  }  
+  Map[String, String] mapping = read_map(regexFile)
 
   call extractUMI {
     input: 
       fastq1 = fastq1, 
       fastq2 = fastq2, 
-      regexExpression = getRegexExpression.regexExpression,
-      regexKeyword = regexKeyword,
+      regexExpression = mapping[regexKeyword],
       regexFile = regexFile,
       outputLogNamePrefix = outputLogNamePrefix
   }
@@ -48,59 +44,13 @@ workflow umiExtract {
   }
 }
 
-
-
-task getRegexExpression {
-  input {
-    String regexKeyword
-    File regexFile
-    Int jobMemory = 8
-    Int threads = 4
-    Int timeout = 6
-  }
-
-  parameter_meta {
-    regexKeyword: "Keyword to get regex expression"
-    regexFile: "File that the regex expressions are stored in"
-    jobMemory: "Memory allocated for this job"
-    threads: "Requested CPU threads"
-    timeout: "hours before task timeout"
-  }
-
-  command <<<
-    grep '~{regexKeyword}' ~{regexFile}
-    
-  >>>
-
-  runtime {
-    memory:  "~{jobMemory} GB"
-    cpu:     "~{threads}"
-    timeout: "~{timeout}"
-  }
-
-  output {
-    String expression = read_string(stdout())
-    String regexExpression = basename(expression)
-  }
-
-  meta {
-    output_meta: {
-      regexExpression: "Stores the regexExpression"
-    }
-  }
-}
-
-
-
 task extractUMI {
   input {
     File fastq1
     File fastq2
     String outputLogNamePrefix
     String outFileName1 = basename("~{fastq1}", ".fastq.gz")
-    String outFileName2 = basename("~{fastq2}", ".fastq.gz")
-    String regexKeyword 
-    String regexFile
+    String outFileName2 = basename("~{fastq2}", ".fastq.gz") 
     String regexExpression
     String method = "regex"
     String modules = "umi-tools/1.0.0 htslib/1.9"
@@ -118,12 +68,13 @@ task extractUMI {
     regexExpression: "Regular experession telling the extract function what to do"
     method: "Using a regular expression as the extract method parameter"
     modules: "Module needed to run UMI-tools extract"
-    jobMemory: "Memory allocated for this job"
+    jobMemory: "Memory allocated for this job (GB)"
     threads: "Requested CPU threads"
     timeout: "hours before task timeout"
   }
 
   command <<<
+    set -eu
     umi_tools extract --extract-method=~{method} \
                       --bc-pattern='~{regexExpression}' \
                       --stdin=~{fastq1} \
