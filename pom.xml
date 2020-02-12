@@ -6,17 +6,17 @@
     <parent>
         <groupId>ca.on.oicr.gsi</groupId>
         <artifactId>pipedev-niassa-cromwell-parent</artifactId>
-        <version>2.5.6</version>
+        <version>2.5.12</version>
         <relativePath/>
     </parent>
 
-    <artifactId>UMI-extract</artifactId>
+    <artifactId>umiExtract</artifactId>
     <version>1.0</version>
 
     <properties>
         <workflow-description>Workflow to extract UMIs from reads and put them as identifiers</workflow-description>
-        <wdl-workflow>UMItools.wdl</wdl-workflow>
-        <test-basedir>tests/</test-basedir>
+        <wdl-workflow>umiExtract.wdl</wdl-workflow>
+        <test-definition>tests.json</test-definition>
     </properties>
 
 </project>
