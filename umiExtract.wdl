@@ -3,18 +3,15 @@ workflow umiExtract {
   input {
     File fastq1
     File fastq2
-    String regexKeyword
-    File regexFile
+    String regex
     String outputLogNamePrefix = basename("~{fastq1}", "_R1_001.fastq.gz")
   } 
     
-  Map[String, String] mapping = read_map(regexFile)
-
   call extractUMI {
     input: 
       fastq1 = fastq1, 
       fastq2 = fastq2, 
-      regexExpression = mapping[regexKeyword],
+      regex = regex,
       outputLogNamePrefix = outputLogNamePrefix
   }
 
@@ -50,7 +47,7 @@ task extractUMI {
     String outputLogNamePrefix
     String outFileName1 = basename("~{fastq1}", ".fastq.gz")
     String outFileName2 = basename("~{fastq2}", ".fastq.gz") 
-    String regexExpression
+    String regex
     String method = "regex"
     String modules = "umi-tools/1.0.0 htslib/1.9"
     Int jobMemory = 8
@@ -64,7 +61,7 @@ task extractUMI {
     outFileName1: "Name for the output file derived from input file fastq1"
     outFileName2: "Name for the output file derived from the input file fastq2"
     outputLogNamePrefix: "Name for the output log file"
-    regexExpression: "Regular experession telling the extract function what to do"
+    regex: "Regular experession telling the extract function what to do"
     method: "Using a regular expression as the extract method parameter"
     modules: "Module needed to run UMI-tools extract"
     jobMemory: "Memory allocated for this job (GB)"
@@ -75,7 +72,7 @@ task extractUMI {
   command <<<
     set -eu
     umi_tools extract --extract-method=~{method} \
-                      --bc-pattern='~{regexExpression}' \
+                      --bc-pattern='~{regex}' \
                       --stdin=~{fastq1} \
                       --stdout=~{outFileName1}.umi.fastq \
                       --read2-in=~{fastq2} \
