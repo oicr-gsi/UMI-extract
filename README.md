@@ -24,7 +24,7 @@ Parameter|Value|Description
 `fastq1`|File|First fastq file
 `fastq2`|File|Second fastq file
 `regexKeyword`|String|keyword to get the corresponding regular expression
-`regexFile`|File|"/.mounts/labs/gsi/testdata/umiExtract/regex/regex.txt"|The file to parse inside which the regex are
+`regexFile`|File|"Default place is (/.mounts/labs/gsi/testdata/umiExtract/regex/regex.txt") The file to parse inside which the regex are
 
 #### Optional workflow parameters:
 Parameter|Value|Default|Description
